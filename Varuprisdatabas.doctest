@@ -1,0 +1,49 @@
+>>> import Varuprisdatabas
+>>> import Apparat_class
+>>> databas=Varuprisdatabas.lasFil('Databas.txt')
+>>> original_databas=Varuprisdatabas.lasFil('Databas.txt')
+>>> databas
+{280: ['VOLVO', 107000.0, 5], 100: ['CHIPS', 14.9, 353], 135: ['STÖVLAR', 159.0, 234]}
+>>> original_databas
+{280: ['VOLVO', 107000.0, 5], 100: ['CHIPS', 14.9, 353], 135: ['STÖVLAR', 159.0, 234]}
+>>> app = Varuprisdatabas.Applikation(databas, original_databas, 'Databas.txt')
+>>> app.indata_lista=[[280, 5],[100, 353]]
+>>> app.finnaIndex(100)
+1
+
+
+>>> lista={280: ['VOLVO', 107000.0, 5], 100: ['CHIPS', 14.9, 353], 135: ['STÖVLAR', 159.0, 234]}
+>>> apparat=Apparat_class.Kassaapparat(lista)
+>>> apparat.syntaxKontroll('100 2')
+True
+>>> apparat.avlasningIndata('100 02')
+('100', '02')
+>>> apparat.varuKontroll(135)
+True
+>>> apparat.antalKontroll(100, 353, [], 1)
+True
+>>> apparat.databas
+{280: ['VOLVO', 107000.0, 5], 100: ['CHIPS', 14.9, 353], 135: ['STÖVLAR', 159.0, 234]}
+>>> apparat.databas[100][2]
+353
+
+
+>>> vara=Apparat_class.Vara(280, lista)
+>>> vara.kod
+280
+>>> vara.namn
+'VOLVO'
+>>> vara.pris
+107000.0
+>>> vara.antal
+5
+
+>>> app.uppdatera_Databas(280, 4, 'minskning')
+>>> app.uppdatera_Databas(280, 2, 'okning')
+
+
+
+>>> app.databas
+{280: ['VOLVO', 107000.0, 3], 100: ['CHIPS', 14.9, 353], 135: ['STÖVLAR', 159.0, 234]}
+>>> app.modifierad_databas
+{280: ['VOLVO', 107000.0, 5], 100: ['CHIPS', 14.9, 353], 135: ['STÖVLAR', 159.0, 234]}
